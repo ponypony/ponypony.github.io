@@ -198,7 +198,7 @@ font-family: 'Open Sans Condensed', sans-serif;
 }
 .skills .span5 {
 	text-align: left;
-	padding: 0px 0 30px;
+	padding: 0px 10px 30px;
 }
 .skills .ps, .skills .ga, .skills .html, .skills .css, .skills .jq {
 	padding: 1px;
