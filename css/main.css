@@ -198,9 +198,9 @@ font-family: 'Open Sans Condensed', sans-serif;
 }
 .skills .span5 {
 	text-align: left;
-	padding: 0px 10px 30px;
+	padding: 0px 0 30px;
 }
-.skills .ps, .skills .ga, .skills .html, .skills .css, .skills .jq {
+.skills .ps, .skills .ga, .skills .adwords, .skills .html, .skills .css, .skills .jq {
 	padding: 1px;
 	width: 50px;
 	height: 50px;
@@ -211,13 +211,14 @@ font-family: 'Open Sans Condensed', sans-serif;
 }
 .skills .ps { background: #2b68d2; }
 .skills .ga { background: #f7981e; }
+.skills .adwords { background: #5085ed; }
 .skills .html { background: #f3742f; }
 .skills .css { background: #2aa6e4; }
 .skills .jq { background: #0769ad; }
 /*
 .skills .ps:hover, .skills .ai:hover, .skills .html:hover, .skills .css:hover { }
 */
-.skills .ps h3, .skills .ga h3, .skills .html h3, .skills .css h3, .skills .jq h3 {
+.skills .ps h3, .skills .ga h3, .skills .adwords h3, .skills .html h3, .skills .css h3, .skills .jq h3 {
 	color: #fff;
 	font-size: 20px;
 	font-weight: normal;
@@ -226,6 +227,7 @@ font-family: 'Open Sans Condensed', sans-serif;
 	margin: 0;
 }
 .skills .html h3, .skills .css h3 { font-size: 13px; }
+.skills .adwords h3{ font-size:12px;}
 .expand-bg {
 	background: none repeat scroll 0 0 #9199be;
 	border-radius: 16px;
@@ -255,6 +257,10 @@ font-family: 'Open Sans Condensed', sans-serif;
 .ga2 {
 	width: 85%;
 	background: #f7981e;
+}
+.adwords2 {
+	width: 70%;
+	background: #21995c;
 }
 .html2 {
 	width: 85%;
