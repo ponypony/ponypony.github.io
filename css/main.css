@@ -147,8 +147,8 @@ font-family: 'Open Sans Condensed', sans-serif;
 
 #intro {
 	background: #20303e;
-	padding-top: 50px;
-	padding-bottom: 50px;
+	padding-top: 35px;
+	padding-bottom: 35px;
 	color: #fff;
 }
 #intro h5, p { color: #fff; }
