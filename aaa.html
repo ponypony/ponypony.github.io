@@ -127,6 +127,7 @@ function parseUA() {
 		FB:u.indexOf('FB') > -1, //fb webview
 		FB_ios: u.indexOf('FBIOS') > -1, //fb webview
 		FB_4A: u.indexOf('FB4A') > -1, //Facebook app webview for Android
+		FB_mes: u2.match(/MessengerForiOS/i) == "messengerforios",//messengerfor ios
 		// iosv: u.substr(u.indexOf('iPhone OS') + 9, 3),
 		weixin: u2.match(/MicroMessenger/i) == "micromessenger",//微信內置瀏覽器
 		qq: u.match(/\sQQ/i) == " qq" //QQ
@@ -146,7 +147,7 @@ var ua = parseUA();
 		if( (ua.webview) | (ua.webApp) ){
 			alert("Android or IOS webview");
 		}
-		if (  (ua.Line) | (ua.FB) | (ua.FB_4A) | (ua.FB_ios) |(ua.weixin) | (ua.qq) ) {
+		if (  (ua.Line) | (ua.FB) | (ua.FB_4A) | (ua.FB_ios) |(ua.weixin) | (ua.qq) | (ua.FB_mes) ) {
 			alert("not payeasy app webview");	
 			//location.href="http://www.payeasy.com.tw/pezlib/study/aaa.html";
 		}else{
@@ -163,7 +164,7 @@ var ua = parseUA();
  $("#bbb").text( JSON.stringify(ua) );
   $("#ccc").text( navigator.userAgent );
  
-  alert("014");
+  alert("015");
  
  $( ".zzz" ).on( "click", function() {
 //			location.href="http://www.payeasy.com.tw/pezlib/study/aaa.html";
@@ -185,7 +186,7 @@ var ua = parseUA();
 <div id="bbb"></div>
 <div id="ccc"></div>
 
-<div class="zzz">重整014</div>
+<div class="zzz">重整015</div>
 
 
 </body>
