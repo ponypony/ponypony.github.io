@@ -92,17 +92,17 @@ function parseUA() {
 	var u = navigator.userAgent;
 	var u2 = navigator.userAgent.toLowerCase();
 	return { 
-		IE: u.indexOf('Trident') > -1, //IE
-		opera: u.indexOf('Presto') > -1, //opera
-		BlackBerry:u.indexOf('BlackBerry') > -1, //BlackBerry
-		webKit: u.indexOf('AppleWebKit') > -1, //safari or chrome
-		Chrome: u.indexOf('Chrome') > -1, //chrome
-		firefox: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //firefox
+		//IE: u.indexOf('Trident') > -1, //IE
+		//opera: u.indexOf('Presto') > -1, //opera
+		//BlackBerry:u.indexOf('BlackBerry') > -1, //BlackBerry
+		//webKit: u.indexOf('AppleWebKit') > -1, //safari or chrome
+		//Chrome: u.indexOf('Chrome') > -1, //chrome
+		//firefox: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //firefox
 		mobile: !!u.match(/AppleWebKit.*Mobile.*/), //mobile
 		ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios
 		Android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android
-		iPhone: u.indexOf('iPhone') > -1, //iPhone
-		iPad: u.indexOf('iPad') > -1, //iPad
+		//iPhone: u.indexOf('iPhone') > -1, //iPhone
+		//iPad: u.indexOf('iPad') > -1, //iPad
 		webApp: u.indexOf('Safari') == -1, // ios webview
 		webview: u.indexOf('wv') > -1, //Android webview
 		Line:u.indexOf('Line') > -1, //Line webview
@@ -119,9 +119,10 @@ var ua = parseUA();
 		if( (ua.webview) | (ua.webApp) ){
 			alert("Android or IOS webview");
 		}
-		if (  ua.Line ) {
-			alert("Line webview");	
+		if (  (ua.Line) | (ua.FB) | (ua.FB_4A) | (ua.FB_ios) |(ua.weixin) | (ua.qq) ) {
+			alert("not payeasy app webview");	
 		}
+		/*
 		if ( ua.FB ) {
 			alert("FB webview");	
 		}
@@ -131,6 +132,7 @@ var ua = parseUA();
 		if ( ua.FB_ios ) {
 			alert(" ios fb webview");
 		}
+		*/
 		
 	}else{
 		alert("抱歉：此活動只限APP瀏覽");
@@ -154,7 +156,8 @@ console.log(ua);
   $("#ccc").text( navigator.userAgent );
  
  $( ".zzz" ).on( "click", function() {
-			location.href=location.href;
+//			location.href="http://www.payeasy.com.tw/pezlib/study/aaa.html";
+			location.href="//ponypony.github.io/aaa.html";
 		});	
  
 // alert(navigator.userAgent)
