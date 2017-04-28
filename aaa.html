@@ -87,6 +87,33 @@ $(function() {
 
 
 
+
+
+
+
+<style>
+.aaa{ width:950px;}
+.aaa li{ 
+	float:left; 
+	width:19%; 
+	background:#999;
+	list-style:none;
+	
+}
+#bbb{ margin:50px auto; font-size:24px; }
+#ccc{ margin:50px auto; font-size:24px; }
+.zzz{ font-size:100px; margin:20px 0;}
+</style>
+
+
+
+</head>
+<body>
+<div id="bbb"></div>
+<div id="ccc"></div>
+
+<div class="zzz">重整010</div>
+
 <script type="text/javascript">
 function parseUA() {
 	var u = navigator.userAgent;
@@ -154,8 +181,8 @@ var ua = parseUA();
 
  $("#bbb").text( JSON.stringify(ua) );
   $("#ccc").text( navigator.userAgent );
-  location.href="http://www.payeasy.com.tw/";
-  alert("008");
+ 
+  alert("010");
  
  $( ".zzz" ).on( "click", function() {
 //			location.href="http://www.payeasy.com.tw/pezlib/study/aaa.html";
@@ -170,32 +197,5 @@ var ua = parseUA();
 // 
 });
 </script>
-
-
-
-<style>
-.aaa{ width:950px;}
-.aaa li{ 
-	float:left; 
-	width:19%; 
-	background:#999;
-	list-style:none;
-	
-}
-#bbb{ margin:50px auto; font-size:24px; }
-#ccc{ margin:50px auto; font-size:24px; }
-.zzz{ font-size:100px; margin:20px 0;}
-</style>
-
-
-
-</head>
-<body>
-<div id="bbb"></div>
-<div id="ccc"></div>
-
-<div class="zzz">重整008</div>
-
-
 </body>
 </html>
