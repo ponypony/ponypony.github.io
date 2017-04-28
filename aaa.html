@@ -105,18 +105,6 @@ $(function() {
 .zzz{ font-size:100px; margin:20px 0;}
 </style>
 
-
-
-</head>
-<body>
-
-<div id="bbb"></div>
-<div id="ccc"></div>
-
-<div class="zzz">重整013</div>
-
-
-</body>
 <script type="text/javascript">
 function parseUA() {
 	var u = navigator.userAgent;
@@ -145,12 +133,6 @@ function parseUA() {
 	};
 }
 
-	
-	
-	
-	
-		
-		
 $(window).load(function() {
 //$(function () {
 //  	
@@ -171,10 +153,6 @@ var ua = parseUA();
 			
 		}
 		
-		if(  (ua.FB) | (ua.FB_4A) | (ua.FB_ios) ){
-			alert("fb fb fb")
-		}
-		
 	}else{
 		alert("抱歉：此活動只限APP瀏覽");
 		//location.href="//www.payeasy.com.tw/pbenefit/in_other/pmedm/app/";
@@ -185,7 +163,7 @@ var ua = parseUA();
  $("#bbb").text( JSON.stringify(ua) );
   $("#ccc").text( navigator.userAgent );
  
-  alert("013");
+  alert("014");
  
  $( ".zzz" ).on( "click", function() {
 //			location.href="http://www.payeasy.com.tw/pezlib/study/aaa.html";
@@ -200,4 +178,16 @@ var ua = parseUA();
 // 
 });
 </script>
+
+</head>
+<body>
+
+<div id="bbb"></div>
+<div id="ccc"></div>
+
+<div class="zzz">重整014</div>
+
+
+</body>
+
 </html>
