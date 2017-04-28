@@ -1,0 +1,195 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<title>line test</title>
+<link rel="stylesheet" href="http://www.payeasy.com.tw/pezlib/css_Lib/reset.css" type="text/css" media="all" />
+<script type="text/javascript" src="http://www.payeasy.com.tw/pezlib/Jquery_Lib/jquery-1.7.2.min.js"></script>
+<!--
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-21769753-4', 'auto');
+  ga('require', 'ec');
+  
+  ga('ec:setAction', 'viewecshop',{'step': 7533967});
+  ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript">
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+  'ecommerce': {
+    'detail': {
+		'actionField': {'step': 1},
+		'products': [{
+        'id': '4488609', //pidNum
+        'brand': '6603',//WebNum
+        'category': '30693'// capWebid"
+       }]
+     }
+   }
+});
+</script>
+-->
+<!--
+ecommerce.refund.ActionField.step
+-->
+
+<!-- Google Tag Manager -->
+<!--
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-LXLD');</script>
+-->
+<!-- End Google Tag Manager -->
+
+<script type="text/javascript">
+$(function() {
+//
+	$(".PezSite_Adv").on( "click", function(e) {
+		e.preventDefault(e);
+		var $this = $(this);
+		var category = 'Site Adv',
+			action = window.location.href,
+			label =  $this.attr("data-report");
+	});
+		
+	if ($(".PezSite_Adv").length != '') {
+		for (i = 0; i < $(".PezSite_Adv").length; i++) {
+			var Initial_url =$(".PezSite_Adv").eq(i).attr("href");
+			if(Initial_url.indexOf("utm_source") < 0){
+				if(Initial_url.indexOf("?") >=0){
+					$(".PezSite_Adv").eq(i).attr("href", Initial_url+'&utm_source=Site_Adv_'+i+'&utm_medium=click&utm_campaign=PezSite_Adv');
+				}else{
+					$(".PezSite_Adv").eq(i).attr("href", Initial_url+'?utm_source=Site_Adv_'+i+'&utm_medium=click&utm_campaign=PezSite_Adv');
+				}	
+			}
+		}
+	}
+//
+
+
+
+
+//
+});
+</script>
+<!--
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script> 
+-->
+
+
+
+<script type="text/javascript">
+function parseUA() {
+	var u = navigator.userAgent;
+	var u2 = navigator.userAgent.toLowerCase();
+	return { 
+		IE: u.indexOf('Trident') > -1, //IE
+		opera: u.indexOf('Presto') > -1, //opera
+		BlackBerry:u.indexOf('BlackBerry') > -1, //BlackBerry
+		webKit: u.indexOf('AppleWebKit') > -1, //safari or chrome
+		Chrome: u.indexOf('Chrome') > -1, //chrome
+		firefox: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //firefox
+		mobile: !!u.match(/AppleWebKit.*Mobile.*/), //mobile
+		ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios
+		Android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android
+		iPhone: u.indexOf('iPhone') > -1, //iPhone
+		iPad: u.indexOf('iPad') > -1, //iPad
+		webApp: u.indexOf('Safari') == -1, // ios webview
+		webview: u.indexOf('wv') > -1, //Android webview
+		Line:u.indexOf('Line') > -1, //Line webview
+		FB:u.indexOf('FB') > -1, //fb webview
+		FB_ios: u.indexOf('FBIOS') > -1, //fb webview
+		FB_4A: u.indexOf('FB4A') > -1, //Facebook app webview for Android
+		// iosv: u.substr(u.indexOf('iPhone OS') + 9, 3),
+		weixin: u2.match(/MicroMessenger/i) == "micromessenger",//微信內置瀏覽器
+		qq: u.match(/\sQQ/i) == " qq" //QQ
+	};
+}
+var ua = parseUA();
+	if ((ua.mobile)){
+		if( (ua.webview) | (ua.webApp) ){
+			alert("Android or IOS webview");
+		}
+		if (  ua.Line ) {
+			alert("Line webview");	
+		}
+		if ( ua.FB ) {
+			alert("FB webview");	
+		}
+		if ( ua.FB_4A ) {
+			alert("Android fb webview");	
+		}
+		if ( ua.FB_ios ) {
+			alert(" ios fb webview");
+		}
+		
+	}else{
+		alert("抱歉：此活動只限APP瀏覽");
+		location.href="//www.payeasy.com.tw/pbenefit/in_other/pmedm/app/";
+	
+	}
+	
+	
+	
+	
+		
+		
+
+$(function () {
+//  	
+
+console.log(ua);
+
+
+ $("#bbb").text( JSON.stringify(ua) );
+  $("#ccc").text( navigator.userAgent );
+ 
+ $( ".zzz" ).on( "click", function() {
+			location.href="http://www.payeasy.com.tw/pezlib/study/aaa.html";
+		});	
+ 
+// alert(navigator.userAgent)
+ 
+// alert("sss")
+
+// 
+});
+</script>
+
+
+
+<style>
+.aaa{ width:950px;}
+.aaa li{ 
+	float:left; 
+	width:19%; 
+	background:#999;
+	list-style:none;
+	
+}
+#bbb{ margin:50px auto; font-size:24px; }
+#ccc{ margin:50px auto; font-size:24px; }
+.zzz{ font-size:100px; margin:20px 0;}
+</style>
+
+
+
+</head>
+<body>
+<div id="bbb"></div>
+<div id="ccc"></div>
+
+<div class="zzz">重整</div>
+
+
+</body>
+</html>
