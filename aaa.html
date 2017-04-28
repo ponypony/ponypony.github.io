@@ -124,7 +124,13 @@ function parseUA() {
 $(window).load(function() {
 //$(function () {
 //  	
-alert("003")
+var _first ='0';
+if(_first==0){
+	location.reload();
+	_first==1
+}
+
+alert("004")
 console.log(ua);
 
 var ua = parseUA();
@@ -151,7 +157,8 @@ var ua = parseUA();
  
  $( ".zzz" ).on( "click", function() {
 //			location.href="http://www.payeasy.com.tw/pezlib/study/aaa.html";
-			location.href="//ponypony.github.io/aaa.html";
+			//location.href="//ponypony.github.io/aaa.html";
+			location.reload();
 		});	
  
 // alert(navigator.userAgent)
@@ -185,7 +192,7 @@ var ua = parseUA();
 <div id="bbb"></div>
 <div id="ccc"></div>
 
-<div class="zzz">重整003</div>
+<div class="zzz">重整004</div>
 
 
 </body>
