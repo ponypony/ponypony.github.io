@@ -121,12 +121,15 @@ function parseUA() {
 		qq: u.match(/\sQQ/i) == " qq" //QQ
 	};
 }
-$(document).one("ready", function(){
-  alert("018")
-});
+
+$( window ).load(function() {
+    if (window.location.href.indexOf('reload')==-1) {
+         window.location.replace(window.location.href+'?reload');
+    }
+
 
 //$(window).load(function() {
-$(function () {
+//$(function () {
 //  	
 console.log(ua);
 
@@ -185,7 +188,7 @@ var ua = parseUA();
 <div id="bbb"></div>
 <div id="ccc"></div>
 
-<div class="zzz">重整018</div>
+<div class="zzz">重整020</div>
 
 
 </body>
