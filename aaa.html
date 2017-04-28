@@ -112,7 +112,7 @@ $(function() {
 <div id="bbb"></div>
 <div id="ccc"></div>
 
-<div class="zzz">重整010</div>
+<div class="zzz">重整011</div>
 
 <script type="text/javascript">
 function parseUA() {
@@ -163,7 +163,7 @@ var ua = parseUA();
 		}
 		if (  (ua.Line) | (ua.FB) | (ua.FB_4A) | (ua.FB_ios) |(ua.weixin) | (ua.qq) ) {
 			alert("not payeasy app webview");	
-			location.href="http://www.payeasy.com.tw/pezlib/study/aaa.html";
+			//location.href="http://www.payeasy.com.tw/pezlib/study/aaa.html";
 		}else{
 			
 		}
@@ -182,7 +182,7 @@ var ua = parseUA();
  $("#bbb").text( JSON.stringify(ua) );
   $("#ccc").text( navigator.userAgent );
  
-  alert("010");
+  alert("011");
  
  $( ".zzz" ).on( "click", function() {
 //			location.href="http://www.payeasy.com.tw/pezlib/study/aaa.html";
