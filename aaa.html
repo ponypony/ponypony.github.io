@@ -121,8 +121,8 @@ function parseUA() {
 	
 		
 		
-
-$(function () {
+$(window).load(function() {
+//$(function () {
 //  	
 
 console.log(ua);
@@ -133,7 +133,7 @@ var ua = parseUA();
 			alert("Android or IOS webview");
 		}
 		if (  (ua.Line) | (ua.FB) | (ua.FB_4A) | (ua.FB_ios) |(ua.weixin) | (ua.qq) ) {
-			alert("not payeasy app webview 001");	
+			alert("not payeasy app webview 002");	
 		}else{
 			
 		}
@@ -185,7 +185,7 @@ var ua = parseUA();
 <div id="bbb"></div>
 <div id="ccc"></div>
 
-<div class="zzz">重整001</div>
+<div class="zzz">重整002</div>
 
 
 </body>
