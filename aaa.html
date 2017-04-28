@@ -114,31 +114,7 @@ function parseUA() {
 		qq: u.match(/\sQQ/i) == " qq" //QQ
 	};
 }
-var ua = parseUA();
-	if ((ua.mobile)){
-		if( (ua.webview) | (ua.webApp) ){
-			alert("Android or IOS webview");
-		}
-		if (  (ua.Line) | (ua.FB) | (ua.FB_4A) | (ua.FB_ios) |(ua.weixin) | (ua.qq) ) {
-			alert("not payeasy app webview");	
-		}
-		/*
-		if ( ua.FB ) {
-			alert("FB webview");	
-		}
-		if ( ua.FB_4A ) {
-			alert("Android fb webview");	
-		}
-		if ( ua.FB_ios ) {
-			alert(" ios fb webview");
-		}
-		*/
-		
-	}else{
-		alert("抱歉：此活動只限APP瀏覽");
-		location.href="//www.payeasy.com.tw/pbenefit/in_other/pmedm/app/";
-	
-	}
+
 	
 	
 	
@@ -150,6 +126,24 @@ $(function () {
 //  	
 
 console.log(ua);
+
+var ua = parseUA();
+	if ((ua.mobile)){
+		if( (ua.webview) | (ua.webApp) ){
+			alert("Android or IOS webview");
+		}
+		if (  (ua.Line) | (ua.FB) | (ua.FB_4A) | (ua.FB_ios) |(ua.weixin) | (ua.qq) ) {
+			alert("not payeasy app webview");	
+		}else{
+			
+		}
+		
+		
+	}else{
+		alert("抱歉：此活動只限APP瀏覽");
+		location.href="//www.payeasy.com.tw/pbenefit/in_other/pmedm/app/";
+	
+	}
 
 
  $("#bbb").text( JSON.stringify(ua) );
