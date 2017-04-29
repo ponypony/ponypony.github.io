@@ -142,7 +142,7 @@ var ua = parseUA();
 	if ((ua.mobile)){
 		if( (ua.webview) | (ua.webApp) ){
 			//alert("Android or IOS webview");
-			//$("#bbb").css("color","#00E600");
+			$("#bbb").css("color","#00E600");
 			//$(".xxx").text( "Android or IOS webview");
 			
 		}
@@ -153,8 +153,8 @@ var ua = parseUA();
 			location.href="//www.payeasy.com.tw/";
 		}else{
 			$(".xxx").text( "open on browser");
-			//location.href="//www.payeasy.com.tw/pbenefit/in_other/pmedm/app/";
-			 setTimeout(function(){document.location.href = "//www.payeasy.com.tw/pbenefit/in_other/pmedm/app/";},500);
+			location.href="//www.payeasy.com.tw/pbenefit/in_other/pmedm/app/";
+			
 			
 		}
 		
@@ -201,7 +201,7 @@ var ua = parseUA();
 <div id="bbb"></div>
 <div id="ccc"></div>
 <div class="xxx"></div>
-<div class="zzz">重整060</div>
+<div class="zzz">重整065</div>
 
 
 </body>
