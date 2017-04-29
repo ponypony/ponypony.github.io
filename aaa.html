@@ -10,8 +10,8 @@
 <meta http-equiv="expires" content="0"/>
 
 <title>line test</title>
-<link rel="stylesheet" href="http://www.payeasy.com.tw/pezlib/css_Lib/reset.css" type="text/css" media="all" />
-<script type="text/javascript" src="http://www.payeasy.com.tw/pezlib/Jquery_Lib/jquery-1.7.2.min.js"></script>
+<link rel="stylesheet" href="//www.payeasy.com.tw/pezlib/css_Lib/reset.css" type="text/css" media="all" />
+<script type="text/javascript" src="//www.payeasy.com.tw/pezlib/Jquery_Lib/jquery-1.7.2.min.js"></script>
 <!--
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -140,9 +140,11 @@ var ua = parseUA();
 	if ((ua.mobile)){
 		if( (ua.webview) | (ua.webApp) ){
 			alert("Android or IOS webview");
+			$("#bbb").css("color","#f00");
 		}
 		if (  (ua.Line) | (ua.FB) | (ua.FB_4A) | (ua.FB_ios) |(ua.weixin) | (ua.qq) | (ua.FB_mes) ) {
 			alert("not payeasy app webview");	
+			$("#bbb").css("color","#000");
 			//location.href="http://www.payeasy.com.tw/pezlib/study/aaa.html";
 		}else{
 			
@@ -191,7 +193,7 @@ var ua = parseUA();
 <div id="bbb"></div>
 <div id="ccc"></div>
 
-<div class="zzz">重整025</div>
+<div class="zzz">重整030</div>
 
 
 </body>
