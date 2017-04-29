@@ -148,11 +148,11 @@ var ua = parseUA();
 			//$(".xxx").text( "Android or IOS webview");
 			
 		}
-		if (  (ua.Line) | (ua.FB) | (ua.FB_4A) | (ua.FB_ios) |(ua.weixin) | (ua.qq) | (ua.FB_mes) | (ua.ding) ) {
+		if (  (ua.Line) | (ua.FB) | (ua.FB_4A) | (ua.FB_ios) |(ua.weixin) | (ua.qq) | (ua.FB_mes) | (ua.ali) ) {
 			//alert("not payeasy app webview");	
 			$("#bbb").css("color","#f00");
 			$(".xxx").text( "not payeasy app webview");
-			//location.href="//www.payeasy.com.tw/";
+			location.href="//www.payeasy.com.tw/";
 		}else{
 			$(".xxx").text( "open on browser");
 			location.href="//www.payeasy.com.tw/pbenefit/in_other/pmedm/app/";
@@ -203,7 +203,7 @@ var ua = parseUA();
 <div id="bbb"></div>
 <div id="ccc"></div>
 <div class="xxx"></div>
-<div class="zzz">重整075</div>
+<div class="zzz">重整080</div>
 
 
 </body>
