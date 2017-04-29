@@ -139,13 +139,16 @@ console.log(ua);
 var ua = parseUA();
 	if ((ua.mobile)){
 		if( (ua.webview) | (ua.webApp) ){
-			alert("Android or IOS webview");
-			$("#bbb").css("color","#f00");
+			//alert("Android or IOS webview");
+			$("#bbb").css("color","#00E600");
+			$(".xxx").text( "Android or IOS webview");
+			
 		}
 		if (  (ua.Line) | (ua.FB) | (ua.FB_4A) | (ua.FB_ios) |(ua.weixin) | (ua.qq) | (ua.FB_mes) ) {
-			alert("not payeasy app webview");	
-			$("#bbb").css("color","#000");
-			//location.href="http://www.payeasy.com.tw/pezlib/study/aaa.html";
+			//alert("not payeasy app webview");	
+			$("#bbb").css("color","#f00");
+			$(".xxx").text( "not payeasy app webview");
+			location.href="//www.payeasy.com.tw/";
 		}else{
 			
 		}
@@ -185,15 +188,15 @@ var ua = parseUA();
 }
 #bbb{ margin:50px auto; font-size:24px; }
 #ccc{ margin:50px auto; font-size:24px; }
-.zzz{ font-size:100px; margin:20px 0;}
+.xxx, .zzz{ font-size:80px; margin:30px 0;}
 </style>
 </head>
 <body>
 
 <div id="bbb"></div>
 <div id="ccc"></div>
-
-<div class="zzz">重整030</div>
+<div class="xxx"></div>
+<div class="zzz">重整035</div>
 
 
 </body>
