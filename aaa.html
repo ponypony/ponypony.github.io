@@ -117,7 +117,8 @@ function parseUA() {
 		FB_4A: u.indexOf('FB4A') > -1, //Facebook app webview for Android
 		FB_mes: u2.match(/MessengerForiOS/i) == "messengerforios",//messengerfor ios
 		// iosv: u.substr(u.indexOf('iPhone OS') + 9, 3),
-		weixin: u2.match(/MicroMessenger/i) == "micromessenger",//微信內置瀏覽器
+		weixin: u2.match(/MicroMessenger/i) == "micromessenger",//微信
+		ali: u2.match(/AliApp/i) == "aliapp",//ding
 		qq: u.match(/\sQQ/i) == " qq" //QQ
 	};
 }
@@ -146,7 +147,7 @@ var ua = parseUA();
 			//$(".xxx").text( "Android or IOS webview");
 			
 		}
-		if (  (ua.Line) | (ua.FB) | (ua.FB_4A) | (ua.FB_ios) |(ua.weixin) | (ua.qq) | (ua.FB_mes) ) {
+		if (  (ua.Line) | (ua.FB) | (ua.FB_4A) | (ua.FB_ios) |(ua.weixin) | (ua.qq) | (ua.FB_mes) | (ua.ali) ) {
 			//alert("not payeasy app webview");	
 			$("#bbb").css("color","#f00");
 			$(".xxx").text( "not payeasy app webview");
@@ -201,7 +202,7 @@ var ua = parseUA();
 <div id="bbb"></div>
 <div id="ccc"></div>
 <div class="xxx"></div>
-<div class="zzz">重整065</div>
+<div class="zzz">重整070</div>
 
 
 </body>
