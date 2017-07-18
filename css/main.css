@@ -187,6 +187,8 @@ font-family: 'Open Sans Condensed', sans-serif;
 	margin-bottom: 30px;
 	display: block;
 }
+ul.desc_ul{ margin:0; padding:0 0 0 15px;}
+ul.desc_ul li{ margin-bottom:5px; color:#6c6b74;}
 
 /***** Skills *****/
 .skills { padding-top: 50px; }
