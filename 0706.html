@@ -1,46 +1,27 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="uft8">
-<title>無標題文件</title>
-<script type="text/javascript">
-var src = 'http://www.payeasy.com.tw/pezlib/study/0302.html';
-$("body").append("<iframe id='global-auth-frame' style='display:none' src='" + src + "'></iframe>");
-
-function getStoreKey(domain) {
-    return `crossDomainStore::${ domain }`;
-}
-function readStore(domain) {
-    let key = getStoreKey(domain);
-    let store = window.localStorage.getItem(key);
-    return store ? JSON.parse(store) : {};
-}
-function writeStore(domain, store) {
-    let key = getStoreKey(domain);
-    let serializedData = JSON.stringify(store);
-    window.localStorage.setItem(key, serializedData);
-}
-
-postRobot.on（'read'，{domain：'*'}，（{origin，data}）=> { 
-    let store = readStore（origin）; 
-    return {result：store [data.key]}; 
-}）;
-postRobot.on（'write'，{domain：'*'}，（{origin，data}）=> { 
-    let store = readStore（origin）; 
-    store [data.key] = data.value; 
-    writeStore（origin，store） ）; 
-}）;
-
-let userStore = Store(window.top);
-await userStore.set('user', { name: 'Kermit' });
-// later...
-console.log(`Hello ${ (await userStore.get('user')).name }!`);
-</script>
-
-
-</head>
-<body>
-
-
-</body>
+<!DOCTYPE html>  
+<html>  
+    <head> 
+	<meta charset="utf8">
+        <title></title>  
+    </head>  
+    <body>  
+        <div style="width:200px; float:left; margin-right:200px;border:solid 1px #333;">  
+            <div id="color">Frame Color</div>  
+            </div>  
+        <div>  
+        <iframe id="child" src="http://jquery.exam.com/text.html"></iframe>  
+        </div>  
+        <script type="text/javascript">  
+            window.onload = function() {  
+				// 在?面加?完成后主?面向iframe?送getColor?求（?????用?）
+                window.frames[0].postMessage('getcolor', 'http://jquery.exam.com');  
+            }  
+			// 主?面?听message事件,初始化自身?色
+			// 主?面?听message事件,?理自身?色
+            window.addEventListener('message', function(e) {  
+                var color = e.data;  
+                document.getElementById('color').style.backgroundColor = color;  
+            }, false);  
+        </script>  
+    </body>  
 </html>
