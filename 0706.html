@@ -5,23 +5,32 @@
         <title></title>  
     </head>  
     <body>  
-        <div style="width:200px; float:left; margin-right:200px;border:solid 1px #333;">  
-            <div id="color">Frame Color</div>  
-            </div>  
-        <div>  
-        <iframe id="child" src="http://www.payeasy.com.tw/pezlib/study/0302.html"></iframe>  
-        </div>  
-        <script type="text/javascript">  
-            window.onload = function() {  
-				// 在?面加?完成后主?面向iframe?送getColor?求（?????用?）
-                window.frames[0].postMessage('getcolor', 'http://www.payeasy.com.tw/pezlib/study/0302.html');  
-            }  
-			// 主?面?听message事件,初始化自身?色
-			// 主?面?听message事件,?理自身?色
-            window.addEventListener('message', function(e) {  
-                var color = e.data;  
-                document.getElementById('color').style.backgroundColor = color;  
-            }, false);  
-        </script>  
+	<!--
+<iframe style="display:none" id="ifrStorageProxy" src="http://www.payeasy.com.tw/pezlib/study/0302.html"></iframe>
+<script>
+document.domain = 'ponypony.github.io';
+var winifrStorageProxy = document.getElementById('ifrStorageProxy').contentWindow;
+winifrStorageProxy.onload = function () {
+winifrStorageProxy.setItem('showbo', 'test-' + new Date().toLocaleString());
+alert(winifrStorageProxy.setItem('showbo'));
+}
+</script>
+-->
+
+<iframe style="display:none" id="ifrStorageProxy" src="http://www.payeasy.com.tw/pezlib/study/0302.html"></iframe>
+<script>
+    var winifrStorageProxy = document.getElementById('ifrStorageProxy')
+    window.addEventListener('message', function (e) {
+        if (e.source != winifrStorageProxy.contentWindow) return;//不是加?的iframe?送的信息
+        alert(e.data);
+    }, false);
+    winifrStorageProxy.onload = function () {///注意要等待iframe加?完?，要不代理?onmessage未注???有反?
+        winifrStorageProxy.contentWindow.postMessage(JSON.stringify({ action: 'setItem', key: 'showbo', data: new Date().toLocaleString() }), '*');//?送存?指令
+        winifrStorageProxy.contentWindow.postMessage(JSON.stringify({ action: 'getItem', key: 'showbo' }), '*');//?送?取指令
+    }
+</script>
+
+
+
     </body>  
 </html>
