@@ -27,6 +27,7 @@ alert(winifrStorageProxy.setItem('showbo'));
     winifrStorageProxy.onload = function () {///注意要等待iframe加?完?，要不代理?onmessage未注???有反?
         winifrStorageProxy.contentWindow.postMessage(JSON.stringify({ action: 'setItem', key: 'showbo', data: new Date().toLocaleString() }), '*');//?送存?指令
         winifrStorageProxy.contentWindow.postMessage(JSON.stringify({ action: 'getItem', key: 'showbo' }), '*');//?送?取指令
+		alert("111")
     }
 </script>
 
