@@ -1,44 +1,238 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>get </title>
-<link rel="stylesheet" href="//www.payeasy.com.tw/pezlib/css_Lib/reset.css" type="text/css" media="all" />
-<script type="text/JavaScript">
-window.jQuery || document.write("<script src='//www.payeasy.com.tw/pezlib/Jquery_Lib/jquery-1.10.2.min.js'>\x3C/script>");
-</script>
+<meta charset="big5">
+<title>無標題文件</title>
+<!--
+<link rel="stylesheet" href="http://www.payeasy.com.tw/pezlib/css_Lib/reset.css" type="text/css" media="all"/>
+-->
+<script src="http://www.payeasy.com.tw/pezlib/Jquery_Lib/jquery-1.7.2.min.js" ></script>
+
 <style>
-body{ font-size: 20px; list-style: 25px;}
-div{ border: 1px solid #666; padding: 10px;}
-</style>
+	body { font-family : tahoma }
+h2 { font-weight: bold; border-bottom: 2px solid gray; margin-bottom:10px}
+#data { border: 1px solid grey; min-height:20px; }
+#hidden { display: none }
 
+</style> 
 
-
-<script type="text/javascript">
-//
-PezNum
-
-function clickCounter() {
-alert(window.localStorage.getItem('PezNum')+'////')
-    if(typeof(Storage) == "PezNum") {
-              $(".aaa").html(localStorage.PezNum);
-	   alert("Ya")
-    } else {
-        alert("no no")
-    }
+<script type="text/JavaScript">
+//See http://jsfiddle.net/ScQJg/8/ (and ancestors) for history
+//http://www.nczonline.net/blog/2010/09/07/learning-from-xauth-cross-domain-localstorage/
+//Declare GlobalStorage object and prototype
+function GlobalStorage(origin, path, prefix) {
+    this.origin = origin;
+    this.path = path;
+    this.prefix = prefix;
+    this._iframe = null;
+    this._iframeReady = false;
+    this._queue = [];
+    this._requests = {};
+    this._id = 0;
+    this._init();
 }
 
-//
+GlobalStorage.prototype = {
+
+    //restore constructor
+    constructor: GlobalStorage,
+    
+    //public bits    
+    getItem: function(key, callback) {
+        var data = { key: prefix+key };
+        this._sendCommand("getItem", data, callback);
+    },
+
+    setItem: function(key, val, callback) {
+        var data = { key: prefix+key, value: val };
+        this._sendCommand("setItem", data, callback);
+    },
+
+    removeItem: function(key, callback) {
+        var data = { key: prefix+key };
+        this._sendCommand("removeItem", data, callback);
+    },
+
+    getAll: function(pattern, callback) {
+        var data = { pattern: pattern };
+        this._sendCommand("getAll", data, callback);
+    },
+
+    //private bits
+    _init: function() {
+      var that = this; 
+      if(!this._iframe) {
+        if(window.postMessage && window.JSON && window.localStorage) {
+          this._iframe = document.createElement("iframe");
+          this._iframe.style.cssText = "position:absolute; width: 1px; height:1px; left:-9999px;";
+          document.body.appendChild(this._iframe);
+
+          if (window.addEventListener){
+              this._iframe.addEventListener("load", function(){ that._iframeLoaded(); }, false);
+              window.addEventListener("message", function(event){ that._handleMessage(event); }, false);
+          } else if (this._iframe.attachEvent){
+              this._iframe.attachEvent("onload", function(){ that._iframeLoaded(); }, false);
+              window.attachEvent("onmessage", function(event){ that._handleMessage(event); });
+          }
+        } else {
+          throw new Error("Unsupported browser.");
+        }
+        
+        this._iframe.src = this.origin + this.path;
+      }
+    },
+    
+    _sendCommand: function(cmd, data, callback) {
+        data.id = ++this._id;
+        this._requests[data.id] = callback;
+        data.command = cmd;
+        this._handleSend(JSON.stringify(data));
+    },
+
+    _handleSend: function(json) {
+        if(this._iframeReady) {
+          this._iframe.contentWindow.postMessage(json, this.origin);
+        } else {
+          this._queue.push(json);
+        }
+    },
+    
+    _iframeLoaded: function() {
+        this._iframeReady = true;
+        //send any queued requests
+        if(this._queue.length) {
+            for (var i=0, len=this._queue.length; i < len; i++){
+                this._handleSend(this._queue[i]);
+            }
+            this._queue = [];
+        }
+    },
+
+    _handleMessage: function(event) {
+        if (event.origin == this.origin) {
+            var data = JSON.parse(event.data);
+            var callback = this._requests[data.id] || function() {/* do nothing*/};
+            switch(data.command) {
+                case "setItem": callback(); break;
+                case "removeItem": callback(); break;
+                case "getItem": callback(this._shortKey(data.key), data.value); break;
+                case "getAll":
+                    var values = data.values;
+                    for(var i = 0; i < values.length; i++) {
+                        callback(this._shortKey(values[i].key), values[i].value);
+                    }
+                    break;
+            }
+            delete this._requests[data.id];
+        }
+    },
+    
+    _shortKey: function(key) {
+      return key.substring(prefix.length);
+    }
+ } 
+
+//Use the bits
+var globalUrl = "http://stackauth.com";
+var prefix = "globalStorageDemo-";
+var storage = new GlobalStorage(globalUrl, "", prefix);
+
+$("#save").click(function () {
+  var key = $("#key").attr('value');
+  var value = $("#value").attr('value');
+  storage.setItem(key, value, RewriteFromStorage);
+});
+
+function RewriteFromStorage() {
+$("#data").empty();
+storage.getAll(prefix, function(key, value) {
+    $("#data").append(
+        $("<div class='kvp'>").html(key + "=" + value)
+           .append($("<input type='button' value='Delete'>")
+                   .attr('key', key)
+                   .click(function() {
+                        storage.removeItem($(this).attr('key'), RewriteFromStorage);
+                    })
+                  )
+    );
+});
+}
+
+RewriteFromStorage();
+
+//Requires following userscript
+/*
+// ==UserScript==
+// @name           GlobalStorage
+// @namespace      benjol
+// @description    Allows us to 'hook' global storage into a iframe loading an arbitrary url
+// @include        http://stackauth.com/
+// ==/UserScript==
+
+//http://www.nczonline.net/blog/2010/09/07/learning-from-xauth-cross-domain-localstorage/
+
+function inject(f) {
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.textContent = "(" + f.toString() + ")()";
+  document.body.appendChild(script);
+};
+
+inject(function(){
+    function handleRequest(event){
+        if(event.origin == "http://fiddle.jshell.net") {
+            var data = JSON.parse(event.data);
+            switch(data.command) {
+                case "setItem" : 
+                     localStorage.setItem(data.key, data.value); 
+                     break;
+                case "removeItem" : 
+                     localStorage.removeItem(data.key);
+                     break;
+                case "getItem" : 
+                     data.value = localStorage.getItem(data.key); 
+                     break;
+                case "getAll" : 
+                    var reg = new RegExp(data.pattern);
+                    data.values = [];
+                    for(var i = 0; i < localStorage.length; i++) {
+                        var key = localStorage.key(i);
+                        if(reg.test(key)) {
+                            data.values.push({key: key, value: localStorage.getItem(key)});
+                        }
+                    }
+                    break;
+            } 
+                    
+            sendReply(data, event.origin);
+        }
+    }
+    
+    function sendReply(data, origin) {      
+        window.parent.postMessage(JSON.stringify(data), origin);               
+    }
+    
+    if(window.addEventListener){
+        window.addEventListener("message", handleRequest, false);
+    } else if (window.attachEvent){
+        window.attachEvent("onmessage", handleRequest);
+    }
+});
+*/
+
 </script>
+
 </head>
 
 <body>
-<p><button onclick="clickCounter()" type="button">Click me!</button></p>
-<div class="aaa"></div>
 
-<div class="bbb"></div>
-<div class="ccc"></div>
+<h2>GlobalStorage using iFrame, postMessage and userscript</h2>
+<sub>(This demo requires the user-script contained in the comment at the bottom of the JavaScript pane)</sub>
+<div id="data"></div>
+<hr/>
+<span>Key</span><input type="text" id="key"/><span>Value</span><input type="text"id="value"/>
 
+<input type="button" id="save" value="Save"/>
 
 </body>
 </html>
