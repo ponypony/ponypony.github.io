@@ -1,42 +1,46 @@
 <!doctype html>
-<!-- Copyright 2010 Nicholas C. Zakas. All rights reserved. BSD Licensed. -->
 <html>
-<body>
+<head>
+<meta charset="uft8">
+<title>無標題文件</title>
 <script type="text/javascript">
-(function(){
+var src = 'http://www.payeasy.com.tw/pezlib/study/0302.html';
+$("body").append("<iframe id='global-auth-frame' style='display:none' src='" + src + "'></iframe>");
 
-    //allowed domains
-    var whitelist = ["ponypony.github.io", "www.payeasy.com.tw"];
+function getStoreKey(domain) {
+    return `crossDomainStore::${ domain }`;
+}
+function readStore(domain) {
+    let key = getStoreKey(domain);
+    let store = window.localStorage.getItem(key);
+    return store ? JSON.parse(store) : {};
+}
+function writeStore(domain, store) {
+    let key = getStoreKey(domain);
+    let serializedData = JSON.stringify(store);
+    window.localStorage.setItem(key, serializedData);
+}
 
-    function verifyOrigin(origin){
-        var domain = origin.replace(/^https?:\/\/|:\d{1,4}$/g, "").toLowerCase(),
-            i = 0,
-            len = whitelist.length;
+postRobot.on（'read'，{domain：'*'}，（{origin，data}）=> { 
+    let store = readStore（origin）; 
+    return {result：store [data.key]}; 
+}）;
+postRobot.on（'write'，{domain：'*'}，（{origin，data}）=> { 
+    let store = readStore（origin）; 
+    store [data.key] = data.value; 
+    writeStore（origin，store） ）; 
+}）;
 
-        while(i < len){
-            if (whitelist[i] == domain){
-                return true;
-            }
-            i++;
-        }
-
-        return false;
-    }
-
-    function handleRequest(event){
-        if (verifyOrigin(event.origin)){
-            var data = JSON.parse(event.data),
-                value = localStorage.getItem(data.key);
-            event.source.postMessage(JSON.stringify({id: data.id, key:data.key, value: value}), event.origin);
-        }
-    }
-
-    if(window.addEventListener){
-        window.addEventListener("message", handleRequest, false);
-    } else if (window.attachEvent){
-        window.attachEvent("onmessage", handleRequest);
-    }
-})();
+let userStore = Store(window.top);
+await userStore.set('user', { name: 'Kermit' });
+// later...
+console.log(`Hello ${ (await userStore.get('user')).name }!`);
 </script>
+
+
+</head>
+<body>
+
+
 </body>
 </html>
