@@ -19,9 +19,9 @@ div{ border: 1px solid #666; padding: 10px;}
 PezNum
 
 function clickCounter() {
+alert(window.localStorage.getItem('PezNum')+'////')
     if(typeof(Storage) == "PezNum") {
-       
-       $(".aaa").html(localStorage.PezNum);
+              $(".aaa").html(localStorage.PezNum);
 	   alert("Ya")
     } else {
         alert("no no")
