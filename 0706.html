@@ -7,10 +7,38 @@
 <script type="text/JavaScript">
 window.jQuery || document.write("<script src='//www.payeasy.com.tw/pezlib/Jquery_Lib/jquery-1.10.2.min.js'>\x3C/script>");
 </script>
+<style>
+body{ font-size: 20px; list-style: 25px;}
+div{ border: 1px solid #666; padding: 10px;}
+</style>
 
+
+
+<script type="text/javascript">
+//
+PezNum
+
+function clickCounter() {
+    if(typeof(Storage) == "PezNum") {
+       
+       $(".aaa").html(localStorage.PezNum);
+	   alert("Ya")
+    } else {
+        alert("no no")
+    }
+}
+
+//
+</script>
 </head>
 
 <body>
-fdsfdsfds
+<p><button onclick="clickCounter()" type="button">Click me!</button></p>
+<div class="aaa"></div>
+
+<div class="bbb"></div>
+<div class="ccc"></div>
+
+
 </body>
 </html>
