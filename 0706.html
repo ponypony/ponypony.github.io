@@ -1,180 +1,42 @@
 <!doctype html>
+<!-- Copyright 2010 Nicholas C. Zakas. All rights reserved. BSD Licensed. -->
 <html>
-<head>
-<meta charset="big5">
-<title>無標題文件</title>
-<!--
-<link rel="stylesheet" href="http://www.payeasy.com.tw/pezlib/css_Lib/reset.css" type="text/css" media="all"/>
--->
-<script src="http://www.payeasy.com.tw/pezlib/Jquery_Lib/jquery-1.7.2.min.js" ></script>
+<body>
+<script type="text/javascript">
+(function(){
 
-<style>
-	body { font-family : tahoma }
-h2 { font-weight: bold; border-bottom: 2px solid gray; margin-bottom:10px}
-#data { border: 1px solid grey; min-height:20px; }
-#hidden { display: none }
+    //allowed domains
+    var whitelist = ["ponypony.github.io", "www.payeasy.com.tw"];
 
-</style> 
+    function verifyOrigin(origin){
+        var domain = origin.replace(/^https?:\/\/|:\d{1,4}$/g, "").toLowerCase(),
+            i = 0,
+            len = whitelist.length;
 
-<script type="text/JavaScript">
-//http://www.nczonline.net/blog/2010/09/07/learning-from-xauth-cross-domain-localstorage/
-var globalUrl = "http://www.payeasy.com.tw";
-var prefix = "globalStorageDemo-";
-var requests = {};
-var idcounter = 0;
-
-$("#save").click(function () { 
-    var key = $("#key").attr('value');
-    var value = $("#value").attr('value');
-    setItem(key, value); 
-    RewriteFromStorage();
-});
-
-function RewriteFromStorage() {
-    $("#data").empty();
-    getAll(prefix, function(key, value) {
-        var shortkey = key.replace(prefix, "");
-        $("#data").append(
-            $("<div class='kvp'>").html(shortkey + "=" + value)
-               .append($("<input type='button' value='Delete'>")
-                       .attr('key', key)
-                       .click(function() {
-                            removeItem($(this).attr('key'));
-                            RewriteFromStorage();
-                        })
-                      )
-        );
-    });
-}
-
-function getItem(key, callback) {
-    idcounter = idcounter+1;
-    var data = {id: idcounter, key: prefix+key };
-    requests[idcounter] = callback;
-    sendCommand("getItem", data);
-}
-
-function setItem(key, val) {
-    var data = { key: prefix+key, value: val };
-    sendCommand("setItem", data);
-}
-
-function removeItem(key, callback) {
-    var data = { key: prefix+key };
-    sendCommand("removeItem", data);
-}
-
-function getAll(pattern, callback) {
-    idcounter = idcounter+1;
-    var data = {id: idcounter, pattern: pattern };
-    requests[idcounter] = callback;
-    sendCommand("getAll", data);
-}
-
-function sendCommand(cmd, data) {
-    data.command = cmd;
-    var json = JSON.stringify(data);
-    var frame = document.getElementById('hidden');
-    frame.contentWindow.postMessage(json, globalUrl);
-}
-
-function handleMessage(event) {
-    if (event.origin == globalUrl) {
-        var data = JSON.parse(event.data);
-        var callback = requests[data.id];
-        switch(data.command) {
-            case "getItem": callback(data.key, data.value); break;
-            case "getAll": 
-                var values = data.values;
-                for(var i = 0; i < values.length; i++) {
-                    callback(values[i].key, values[i].value);
-                }
-                break;
-        }
-        delete requests[data.id];
-    }
-}
-
-if(window.addEventListener){
-    window.addEventListener("message", handleMessage, false);
-} else if (window.attachEvent){
-    window.attachEvent("onmessage", handleMessage);
-}
-
-RewriteFromStorage();
-
-//Requires following userscript
-/*
-// ==UserScript==
-// @name           GlobalStorage
-// @namespace      benjol
-// @description    Allows us to 'hook' global storage into a iframe loading an arbitrary url
-// @include        http://stackauth.com/
-// ==/UserScript==
-
-//http://www.nczonline.net/blog/2010/09/07/learning-from-xauth-cross-domain-localstorage/
-
-function inject(f) {
-  var script = document.createElement("script");
-  script.type = "text/javascript";
-  script.textContent = "(" + f.toString() + ")()";
-  document.body.appendChild(script);
-};
-
-inject(function(){
-    function handleRequest(event){
-        if(event.origin == "http://fiddle.jshell.net") {
-            var data = JSON.parse(event.data);
-            switch(data.command) {
-                case "setItem" : 
-                     localStorage.setItem(data.key, data.value); 
-                     break;
-                case "removeItem" : 
-                     localStorage.removeItem(data.key);
-                     break;
-                case "getItem" : 
-                     data.value = localStorage.getItem(data.key); 
-                     break;
-                case "getAll" : 
-                    var reg = new RegExp(data.pattern);
-                    var data.values = [];
-                    for(var i = 0; i < localStorage.length; i++) {
-                        var key = localStorage.key(i);
-                        if(reg.test(key)) {
-                            data.values.push({key: key, value: localStorage.getItem(key)});
-                        }
-                    }
-                    break;
+        while(i < len){
+            if (whitelist[i] == domain){
+                return true;
             }
-            sendReply(data, event.origin);
+            i++;
+        }
+
+        return false;
+    }
+
+    function handleRequest(event){
+        if (verifyOrigin(event.origin)){
+            var data = JSON.parse(event.data),
+                value = localStorage.getItem(data.key);
+            event.source.postMessage(JSON.stringify({id: data.id, key:data.key, value: value}), event.origin);
         }
     }
-    
-    function sendReply(data, origin) {      
-        window.parent.postMessage(JSON.stringify(data), event.origin);              
-    }
-    
+
     if(window.addEventListener){
         window.addEventListener("message", handleRequest, false);
     } else if (window.attachEvent){
         window.attachEvent("onmessage", handleRequest);
     }
-});
-*/
-
+})();
 </script>
-
-</head>
-
-<body>
-
-<h2>GlobalStorage using iFrame, postMessage and userscript</h2>
-<sub>(This demo requires the user-script contained in the comment at the bottom of the JavaScript pane)</sub>
-<div id="data"></div>
-<hr/>
-<span>Key</span><input type="text" id="key"/><span>Value</span><input type="text"id="value"/>
-
-<input type="button" id="save" value="Save"/>
-
 </body>
 </html>
