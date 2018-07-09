@@ -8,14 +8,16 @@
 	
 <iframe style="display:none" id="ifrStorageProxy" src="http://www.payeasy.com.tw/pezlib/study/0302.html"></iframe>
 <script>
-	var _Bigname =;
+	var _Bigname ='';
     var winifrStorageProxy = document.getElementById('ifrStorageProxy')
     window.addEventListener('message', function (e) {
         if (e.source != winifrStorageProxy.contentWindow) return;//不是加?的iframe?送的信息
        //alert(e.data);
 		_Bigname=e.data;
-		alert(_Bigname+'   /aaa');
+		
     }, false);
+	
+		alert(_Bigname+'   /aaa');
     winifrStorageProxy.onload = function () {///注意要等待iframe load，要不代理?onmessage未注???有反?
         //winifrStorageProxy.contentWindow.postMessage(JSON.stringify({ action: 'setItem', key: 'showbo', data: new Date().toLocaleString() }), '*');//?送存?指令
 		winifrStorageProxy.contentWindow.postMessage(JSON.stringify({ action: 'setItem', key: 'gitgit', data: _Bigname +'/   777' }), '*');//?送存?指令
