@@ -17,7 +17,8 @@
         //winifrStorageProxy.contentWindow.postMessage(JSON.stringify({ action: 'setItem', key: 'showbo', data: new Date().toLocaleString() }), '*');//?送存?指令
 		winifrStorageProxy.contentWindow.postMessage(JSON.stringify({ action: 'setItem', key: 'gitgit', data: '520' }), '*');//?送存?指令
         winifrStorageProxy.contentWindow.postMessage(JSON.stringify({ action: 'getItem', key: 'lex_0709' }), '*');//?送?取指令
-		localStorage.setItem(e.data.key, e.data.data)
+		localStorage.setItem(e.data.key, e.data.data);
+		alert("OK")
 		
     }
 </script>
