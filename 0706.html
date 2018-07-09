@@ -5,9 +5,11 @@
         <title></title>  
     </head>  
     <body>  
-	
+<!--
 <iframe style="display:none" id="ifrStorageProxy" src="http://www.payeasy.com.tw/pezlib/study/0302.html"></iframe>
+-->
 <script>
+ 	document.write('<iframe style="display:none" id="ifrStorageProxy" src="http://www.payeasy.com.tw/pezlib/study/0302.html"></iframe>');
     var winifrStorageProxy = document.getElementById('ifrStorageProxy')
     window.addEventListener('message', function (e) {
         if (e.source != winifrStorageProxy.contentWindow) return;//不是加?的iframe?送的信息
