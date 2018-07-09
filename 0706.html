@@ -20,7 +20,7 @@
 		winifrStorageProxy.contentWindow.postMessage(JSON.stringify({ action: 'setItem', key: 'gitgit', data: _Bigname +'777' }), '*');//?送存?指令
         winifrStorageProxy.contentWindow.postMessage(JSON.stringify({ action: 'getItem', key: 'gitgit' }), '*');//?送?取指令
 		//localStorage.setItem(e.data.key, e.data.data);
-		alert(e.data+'   /');
+		alert(_Bigname+'   /');
 		
     }
 </script>
