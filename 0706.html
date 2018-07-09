@@ -13,10 +13,10 @@
         if (e.source != winifrStorageProxy.contentWindow) return;//不是加?的iframe?送的信息
         alert(e.data);
     }, false);
-    winifrStorageProxy.onload = function () {///注意要等待iframe加?完?，要不代理?onmessage未注???有反?
+    winifrStorageProxy.onload = function () {///注意要等待iframe load，要不代理?onmessage未注???有反?
         //winifrStorageProxy.contentWindow.postMessage(JSON.stringify({ action: 'setItem', key: 'showbo', data: new Date().toLocaleString() }), '*');//?送存?指令
-		winifrStorageProxy.contentWindow.postMessage(JSON.stringify({ action: 'setItem', key: '1qaz2wsx', data: '456' }), '*');//?送存?指令
-        winifrStorageProxy.contentWindow.postMessage(JSON.stringify({ action: 'getItem', key: 'showbo' }), '*');//?送?取指令
+		winifrStorageProxy.contentWindow.postMessage(JSON.stringify({ action: 'setItem', key: 'gitgit', data: '520' }), '*');//?送存?指令
+        winifrStorageProxy.contentWindow.postMessage(JSON.stringify({ action: 'getItem', key: 'lex_0709' }), '*');//?送?取指令
 		//localStorage.setItem(e.data.key, e.data.data)
 		alert("111")
     }
