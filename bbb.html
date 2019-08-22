@@ -16,9 +16,7 @@
 <meta property="og:image" content=""/>
 <!-- smartbanner -->
 <meta name="apple-itunes-app" content="app-id=435072839"/>
-<!--
-<meta name="google-play-app" content="app-id=com.google.android.youtube">
--->
+
 <meta name="google-play-app" content="app-id=com.ddim.happygo">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="android-touch-icon" href="android-icon.png" />
@@ -56,9 +54,9 @@
 #smartbanner .sb-close { position:absolute; left:5px; top:5px; display:block; border:2px solid #fff; width:14px; height:14px; font-family:'ArialRoundedMTBold',Arial; font-size:15px; line-height:15px; text-align:center; color:#fff; background:#070707; text-decoration:none; text-shadow:none; border-radius:14px; box-shadow:0 2px 3px rgba(0,0,0,0.4); -webkit-font-smoothing:subpixel-antialiased; }
 #smartbanner .sb-close:active { font-size:13px; color:#aaa; }
 #smartbanner .sb-icon { position:absolute; left:30px; top:10px; display:block; width:57px; height:57px; background:rgba(0,0,0,0.6); background-size:cover; border-radius:10px; box-shadow:0 1px 3px rgba(0,0,0,0.3); }
-#smartbanner .no-icon .sb-icon { display:none; }
+#smartbanner.no-icon .sb-icon { display:none; }
 #smartbanner .sb-info { position:absolute; left:98px; top:18px; width:44%; font-size:11px; line-height:1.2em; font-weight:bold; color:#6a6a6a; text-shadow:0 1px 0 rgba(255,255,255,0.8); }
-#smartbanner .no-icon .sb-info { left:34px; }
+#smartbanner #smartbanner.no-icon .sb-info { left:34px; }
 #smartbanner .sb-info strong { display:block; font-size:13px; color:#4d4d4d; line-height: 18px; }
 #smartbanner .sb-info > span { display:block; }
 #smartbanner .sb-info em { font-style:normal; text-transform:uppercase; }
@@ -76,51 +74,16 @@
 #smartbanner.android .sb-button span { text-align: center; display: block; padding: 0 10px; background-color: #42B6C9; background-image: -webkit-gradient(linear,0 0,0 100%,from(#42B6C9),to(#39A9BB)); background-image: -moz-linear-gradient(top,#42B6C9,#39A9BB); text-transform:none; text-shadow:none; box-shadow:none; }
 #smartbanner.android .sb-button:active, #smartbanner.android .sb-button:hover { background: none; }
 #smartbanner.android .sb-button:active span, #smartbanner.android .sb-button:hover span { background:#2AC7E1; }
+
 </style>
 <!-- smartbanner -->
 <script src="https://www.happygocard.com.tw/official/event/st_HAPPYGOAPP/smartbanner/jquery.smartbanner.js"></script> 
 <script type="text/javascript">
    	$(function() {
-			/*
-	        $.smartbanner({ 
-	        	daysHidden: 15, 
-	        	daysReminder: 90,
-	        	appStoreLanguage: 'zh-TW', // language code for the App Store (defaults to user's browser 
-	        	title:'HAPPY GO App',
-	        	button: 'VIEW',
-	        	store: {
-	              ios: 'On the App Store',
-	              android: 'In Google Play',
-	            },
-	            price: {
-	              ios: 'FREE',
-	              android: 'FREE'
-	            }
-	        });
-			
-		$.smartbanner({
-		title: null, // What the title of the app should be in the banner (defaults to <title>)
-		author: null, // What the author of the app should be in the banner (defaults to <meta name="author"> or hostname)
-		price: 'FREE', // Price of the app
-		appStoreLanguage: 'us', // Language code for App Store
-		inAppStore: 'On the App Store', // Text of price for iOS
-		inGooglePlay: 'In Google Play', // Text of price for Android
-		icon: null, // The URL of the icon (defaults to <link>)
-		iconGloss: null, // Force gloss effect for iOS even for precomposed (true or false)
-		button: 'VIEW', // Text on the install button
-		scale: 'auto', // Scale based on viewport size (set to 1 to disable)
-		speedIn: 300, // Show animation speed of the banner
-		speedOut: 400, // Close animation speed of the banner
-		daysHidden: 15, // Duration to hide the banner after being closed (0 = always show banner)
-		daysReminder: 90, // Duration to hide the banner after "VIEW" is clicked (0 = always show banner)
-		force: null // Choose 'ios' or 'android'. Don't do a browser check, just always show this banner
-		});
-		*/
 		$.smartbanner();
 	});
-    	
 </script> 
 <!-- smartbanner -->
-222
+333
 </body>
 </html>
