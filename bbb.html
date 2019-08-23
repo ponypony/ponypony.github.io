@@ -88,20 +88,22 @@
       if (agentID) {
           if ((agentID.indexOf('iphone') != -1)) {
               _event_label='iPhone';
+              alert("iPhone");
           }else if(agentID.indexOf('ipad') != -1) {
               _event_label='ipad';
           }else if(agentID.indexOf('android') != -1 ) {
               _event_label='android';
           }  
       }
+      alert("222");
       $("#smartbanner .sb-button").click(function() {
           gtag('event', window.location.href, {'event_category': 'smartBanner Click','event_label':_event_label});
-          alert("111")
+          alert("333s")
       }); 
       //
   });     
 </script> 
 <!-- smartbanner -->
-444
+555
 </body>
 </html>
