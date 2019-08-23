@@ -77,6 +77,7 @@
       var android = location.href.match(/#android$/) || navigator.userAgent.match(/Android/i) != null;
       $.smartbanner({
         title: 'HAPPY GO',
+        author: 'DDIM',
         force: android ? 'android' : 'ios',
         daysHidden: 0,
         daysReminder: 0
@@ -105,12 +106,18 @@
             alert("333")
         }); 
         //
+       
+                setTimeout(function() {
+                  alert( $("body").html() );
+                }, 1000);
+         
+        //
       
     });     
   </script> 
 </head>
 
 <body style="background: url(images/white_bg.jpg) fixed repeat;">
-999
+000
 </body>
 </html>
