@@ -491,3 +491,15 @@ ul.desc_ul li {
         margin-bottom: 15px;
     }
 }
+
+.gotop {
+    background: url('../img/arr_up.png') no-repeat;
+    height: 48px;
+    width: 48px;
+    position: fixed;
+    right: 15px;
+    bottom: 50px;
+    cursor: pointer;
+    z-index: 1000500;
+    display: none;
+}
