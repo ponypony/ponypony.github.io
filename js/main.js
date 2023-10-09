@@ -8,4 +8,7 @@ $(function() {
     });
     //
     $(window).scrollTop() < 200 ? $(".gotop").fadeOut(100) : $(".gotop").fadeIn(100);
+    $(".gotop").click(function() {
+        $("html,body").animate({ scrollTop: 0 }, 400);
+    });
 });
